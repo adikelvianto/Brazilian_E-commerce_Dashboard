@@ -213,11 +213,11 @@ with st.sidebar:
         max_value=max_date,
         value=[one_year_before_max_date, max_date])
     
-    num_of_seller = st.number_input("Show how many sellers: ", min_value=1, max_value=10, value=5)
+    num_of_seller = st.number_input("Show how many seller(s): ", min_value=1, max_value=10, value=5)
 
-    num_of_product = st.number_input("Show how many top-selling products: ", min_value=1, max_value=20, value=10)
+    num_of_product = st.number_input("Show how many top-selling product(s): ", min_value=1, max_value=20, value=10)
 
-    num_of_cust = st.number_input("Show how many top RFM customers: ", min_value=1, max_value=10, value=5)
+    num_of_cust = st.number_input("Show how many top RFM customer(s): ", min_value=1, max_value=10, value=5)
 
 # Because the date format containing time value, the start date will be reduce by 1 day, while the end date will be increased by 1 day
 start_date = start_date - timedelta(days=1)
@@ -247,9 +247,13 @@ freight_value_corr = create_freight_value_corr(main_df)
 tab1, tab2 = st.tabs(["General Tab", "Correlation Tab"])
  
 with tab1:
-    st.header('E-Commerce Dashboard :sparkles:')
-
+    st.header('Brazilian E-Commerce Dashboard 🛍️')
+    st.markdown("Dataset source: [Brazilian E-Commerce Public Dataset by Olist](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)")
+    st.write('')
     st.write('Latest date can be retrieved: ', main_df["order_purchase_timestamp"].max())
+    
+    st.markdown("---") 
+
     # Revenue generated graph
     st.subheader('Monthly Orders and Incoming Money')
 
@@ -288,6 +292,8 @@ with tab1:
 
     st.pyplot(fig)
 
+    st.markdown("---") 
+
     # Plot Spending Map
     st.subheader("Spending Demography")
     range_cust_min = state_price_cust_means["price"].min()
@@ -306,6 +312,8 @@ with tab1:
 
     st.plotly_chart(fig)
 
+    st.markdown("---") 
+
     # Plot Most Popular Payment Type Demography
     st.subheader("Most Popular Payment Type Demography")
     range_pp_min = df_payment_percentage["credit_card_percentage"].min()
@@ -323,6 +331,7 @@ with tab1:
     fig.update_layout(margin={"r":0, "t":0, "l":0, "b":0})
     st.plotly_chart(fig)
 
+    st.markdown("---") 
     # Plot seller performance
     st.subheader("Seller Performance")
 
@@ -378,6 +387,8 @@ with tab1:
     plt.suptitle("Best Seller Based on Several Parameters", fontsize=20)
     st.pyplot(fig)
 
+    st.markdown("---") 
+
     st.subheader('Top-Selling Product Categories Based on Number of Orders')
 
 
@@ -401,7 +412,7 @@ with tab1:
     plt.title('Top-Selling Product Categories Based on Number of Orders')
     st.pyplot(fig)
 
-
+    st.markdown("---") 
     # Plot best customer based on RFM parameters
     st.subheader('Best Customer Based on RFM Parameters')
 
@@ -464,13 +475,21 @@ with tab1:
 
  
 with tab2:
-    st.header('E-Commerce Dashboard :sparkles:')
+    st.header('Brazilian E-Commerce Dashboard 🛍️')
+    st.markdown("Dataset source: [Brazilian E-Commerce Public Dataset by Olist](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)")
+    st.write('')
+    st.write('Latest date can be retrieved: ', main_df["order_purchase_timestamp"].max())
+    
+    st.markdown("---") 
+    
 
     st.subheader('Product Specifications Correlation Heatmap')
     fig, ax = plt.subplots(figsize=(6, 4))
     sns.heatmap(freight_value_corr, cmap='viridis', annot=True, fmt='.2f', linewidths=.5, ax=ax)
     plt.title('Product Specifications Correlation Heatmap')
     st.pyplot(fig)
+
+    st.markdown("---") 
 
     st.subheader('Product Review Correlation Heatmap')
     fig, ax = plt.subplots(figsize=(6, 4))
