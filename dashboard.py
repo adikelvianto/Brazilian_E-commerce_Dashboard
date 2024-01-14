@@ -247,7 +247,7 @@ freight_value_corr = create_freight_value_corr(main_df)
 tab1, tab2 = st.tabs(["General Tab", "Correlation Tab"])
  
 with tab1:
-    st.header('Brazilian E-Commerce Dashboard 🛍️')
+    st.header('Brazilian E-Commerce (Olist) Dashboard 🛍️')
     st.markdown("Dataset source: [Brazilian E-Commerce Public Dataset by Olist](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)")
     st.write('')
     st.write('Latest date can be retrieved: ', main_df["order_purchase_timestamp"].max())
